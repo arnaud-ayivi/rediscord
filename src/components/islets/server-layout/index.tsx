@@ -1,6 +1,7 @@
 import Sidebar from "@/components/layout/sidebar";
 import Header from "@/components/layout/header";
 import ServerChannelList from "@/components/islets/server-channel-list";
+import VoiceStatusFooter from "@/components/islets/voice-status-footer";
 import { MOCK_SERVER_DATA } from "@/lib/utils/mock-server-data";
 import { delay } from "@/lib/utils";
 import { MOCK_DELAY } from "@/lib/utils/mock-server-data";
@@ -35,6 +36,9 @@ export default async function ServerLayout({ children }: React.PropsWithChildren
                 <div className="hover-scrollbar flex-1 overflow-y-auto py-2">
                     <ServerChannelList server={server} />
                 </div>
+
+                {/* User Status Footer */}
+                <VoiceStatusFooter />
             </Sidebar>
             {children}
         </>

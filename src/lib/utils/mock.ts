@@ -14,7 +14,7 @@ const generateRandomDiscordID = () =>
 
 export const generateFakeCurrentUser = () => ({
   id: generateRandomDiscordID(),
-  name: "Repeep",
+  name: "BullseyeJim",
   avatar: "https://avatars.githubusercontent.com/u/16727448?v=4",
   status: StaticUserStatuses.DND,
   username: "Reepep",

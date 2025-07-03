@@ -46,31 +46,35 @@
 .hidden-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 /*
   Scrollbar that is only visible on hover
 */
-.hover-scrollbar {
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &:not(:hover) {
-    scrollbar-width: 0;
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent;
-    }
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-  }
+.hover-scrollbar::-webkit-scrollbar {
+  width: 6px;
 }
+
+.hover-scrollbar:not(:hover) {
+  scrollbar-width: 0;
+}
+
+.hover-scrollbar:not(:hover)::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.hover-scrollbar:not(:hover)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 * {
   outline: none !important;
-  &:focus-visible {
-    @apply ring-2 ring-primary;
-  }
+}
+
+*:focus-visible {
+  @apply ring-2 ring-primary;
 }
