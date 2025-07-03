@@ -17,7 +17,7 @@ export default function DMChannelList({ channelsData }: DMChannelListrops) {
     if (channelsData) {
       setChannels(channelsData);
     }
-  }, []);
+  }, [channelsData, setChannels]); // Added missing dependencies
 
   const handleChannelDelete = (channelId: string) => {
     if (channels !== null) {
@@ -27,20 +27,20 @@ export default function DMChannelList({ channelsData }: DMChannelListrops) {
   const params = useParams();
 
   return (
-    <div className="pt-4">
-      <DMChannelListHeader />
-      <List className="mt-1">
-        {channels?.map((channel) => (
-          <DMChannelListItem
-            active={params.id === channel.id}
-            key={channel.id}
-            channel={channel}
-            onDelete={() => {
-              handleChannelDelete(channel.id);
-            }}
-          />
-        ))}
-      </List>
-    </div>
+      <div className="pt-4">
+        <DMChannelListHeader />
+        <List className="mt-1">
+          {channels?.map((channel) => (
+              <DMChannelListItem
+                  active={params.id === channel.id}
+                  key={channel.id}
+                  channel={channel}
+                  onDelete={() => {
+                    handleChannelDelete(channel.id);
+                  }}
+              />
+          ))}
+        </List>
+      </div>
   );
 }
