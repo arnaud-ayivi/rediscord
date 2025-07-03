@@ -3,12 +3,14 @@ import React from "react";
 import { PageContent, PageHeader } from "@/components/layout/page";
 import { ServerChannel, ChannelType } from "@/lib/entities/server-channel";
 import { Message } from "@/lib/entities/message";
-import { BsHash, BsSpeaker, BsVolumeUp, BsPinAngle } from "react-icons/bs";
+import { BsHash, BsSpeaker, BsVolumeUp, BsPinAngle, BsList, BsX } from "react-icons/bs";
 import { Input } from "@/components/ui/input";
 import InputField from "@/components/ui/input/input-field";
 import { AiFillGift, AiFillPlusCircle, AiOutlineFileText, AiOutlineGif } from "react-icons/ai";
 import { CgSmileMouthOpen } from "react-icons/cg";
 import ServerMessages from "./server-messages";
+import ServerChannelList from "@/components/islets/server-channel-list";
+import { MOCK_SERVER_DATA } from "@/lib/utils/mock-server-data";
 import {DetailedServer} from "@/lib/entities/server";
 
 interface ServerChannelProps {
@@ -30,9 +32,10 @@ const ChannelIcon = ({ type }: { type: ChannelType }) => {
     }
 };
 
-export default function ServerChannel({ channel, messages }: ServerChannelProps) {
+export default function ServerChannel({ server, channel, messages }: ServerChannelProps) {
     const [newMessage, setNewMessage] = React.useState("");
     const [displayMessages, setDisplayMessages] = React.useState<Message[]>(messages);
+    const [showMobileMenu, setShowMobileMenu] = React.useState(false);
 
     const handleSubmit = () => {
         if (!newMessage.trim()) return;
@@ -62,7 +65,7 @@ export default function ServerChannel({ channel, messages }: ServerChannelProps)
                 return "Welcome! Introduce yourself to the community";
             case "strapi-questions":
                 return "Ask questions about Strapi development here";
-            case "off-your-chest":
+            case "off-topic":
                 return "General discussions and random conversations";
             default:
                 return `This is the #${channel.name} channel`;
@@ -73,6 +76,14 @@ export default function ServerChannel({ channel, messages }: ServerChannelProps)
         <>
             <PageHeader>
                 <div className="flex items-center gap-3">
+                    {/* Mobile Menu Button */}
+                    <button
+                        onClick={() => setShowMobileMenu(true)}
+                        className="md:hidden text-gray-400 hover:text-gray-200 p-1"
+                    >
+                        <BsList fontSize={24} />
+                    </button>
+
                     <ChannelIcon type={channel.type} />
                     <span className="font-semibold text-white">{channel.name}</span>
                     {channel.type === ChannelType.Announcement && (
@@ -92,10 +103,47 @@ export default function ServerChannel({ channel, messages }: ServerChannelProps)
                 </div>
             </PageHeader>
 
+            {/* Mobile Channel List Overlay */}
+            {showMobileMenu && (
+                <div className="fixed inset-0 z-50 md:hidden">
+                    {/* Backdrop */}
+                    <div
+                        className="absolute inset-0 bg-black bg-opacity-50"
+                        onClick={() => setShowMobileMenu(false)}
+                    />
+
+                    {/* Slide-out Menu */}
+                    <div className="absolute left-0 top-0 bottom-0 w-80 bg-midground border-r border-gray-800 flex flex-col">
+                        {/* Header */}
+                        <div className="flex items-center justify-between p-4 border-b border-gray-800">
+                            <div className="flex items-center gap-3">
+                                <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">
+                                    S
+                                </div>
+                                <span className="font-semibold text-white">{server.name}</span>
+                            </div>
+                            <button
+                                onClick={() => setShowMobileMenu(false)}
+                                className="text-gray-400 hover:text-gray-200 p-1"
+                            >
+                                <BsX fontSize={24} />
+                            </button>
+                        </div>
+
+                        {/* Channel List */}
+                        <div className="flex-1 overflow-y-auto py-2">
+                            <div onClick={() => setShowMobileMenu(false)}>
+                                <ServerChannelList server={MOCK_SERVER_DATA} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <PageContent className="h-full w-full flex-col pl-6 pr-1">
                 <div className="max-h-[86vh] overflow-y-auto">
-                    {/* Channel Header */}
-                    <div className="mb-6 pb-4 border-b border-gray-800">
+                    {/* Channel Header - Only show on desktop or if no messages yet */}
+                    <div className="mb-6 pb-4 border-b border-gray-800 hidden md:block">
                         <div className="flex items-center gap-3 mb-2">
                             <div className="h-16 w-16 rounded-full bg-gray-700 flex items-center justify-center">
                                 <ChannelIcon type={channel.type} />

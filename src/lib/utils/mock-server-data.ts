@@ -102,9 +102,9 @@ export const MOCK_MESSAGES: Message[] = [
     {
         id: "1",
         userId: "paul-123",
-        username: "Paul",
+        username: "PatriotHunter",
         avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
-        content: "✨ StrapiConf Call for Papers 🔬🚀\n\nThank you for your interest in submitting a talk for StrapiConf! 🎉\n\n📢 The CFP is now open and will close on February 17th, 2025.\n🔗 Submit your talk here: Google Form\n\n📍 StrapiConf is a one-day conference happening on May 13th, 2025, in Paris.\n🔗 Learn more: conf.strapi.io\n\n💙 Spread the word on Twitter by following @strapijs and using #StrapiConf!\n📍 Have questions? Reach out at conf@strapi.io.\n\n🎤 Speakers of all experience levels are encouraged to apply! 🚀✨",
+        content: "We need to take back what is ours!",
         timestamp: new Date("2025-02-13T09:21:00Z"),
         reactions: [
             { emoji: "🔥", count: 15, users: ["user1", "user2"] },
@@ -114,41 +114,125 @@ export const MOCK_MESSAGES: Message[] = [
     {
         id: "2",
         userId: "sarah-456",
-        username: "Sarah",
+        username: "LibertyRifle",
         avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b4c0?w=32&h=32&fit=crop&crop=face",
-        content: "This is amazing! Can't wait to submit my proposal about GraphQL integration with Strapi 🚀",
+        content: "Thank God DEI is DEAD!",
         timestamp: new Date("2025-02-13T09:45:00Z")
     },
     {
         id: "3",
         userId: "mike-789",
-        username: "Mike",
+        username: "DennisforAmerica",
         avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face",
-        content: "Quick question - is there a specific template for the talk proposals?",
+        content: "You know Israel and Iran teamed up to create the cyborg, George Droid (not Floyd). He was sent to the US to cause trouble.",
         timestamp: new Date("2025-02-13T10:12:00Z")
     },
     {
         id: "4",
-        userId: "paul-123",
-        username: "Paul",
+        userId: "tom-143",
+        username: "GuardianGary",
         avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
-        content: "Great question @Mike! The Google Form has all the fields you need. Just make sure to include a brief description of your talk and your experience level.",
+        content: "These schools letting men play in girls sports need to have their funding terminated NOW",
         timestamp: new Date("2025-02-13T10:15:00Z")
     },
     {
         id: "5",
         userId: "alex-321",
-        username: "Alex",
+        username: "SoverignShooter",
         avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face",
-        content: "Love seeing the community grow! The last StrapiConf was incredible. Definitely submitting this year 💪",
+        content: " I hate femanine men and gays",
         timestamp: new Date("2025-02-13T11:30:00Z")
     },
     {
         id: "6",
         userId: "emma-654",
-        username: "Emma",
+        username: "RedWhiteBoom",
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
-        content: "For those who haven't been to Paris before, the venue last year was absolutely beautiful! Great location for networking too 🇫🇷",
+        content: "These damn migrants will eat our pets and even each other!",
+        timestamp: new Date("2025-02-13T12:15:00Z"),
+        reactions: [
+            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
+            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
+        ]
+    },
+    {
+        id: "7",
+        userId: "Eric-459",
+        username: "BullseyeJim",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        content: "We’ve got to put a stop to this take over.",
+        timestamp: new Date("2025-02-13T12:15:00Z"),
+        reactions: [
+            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
+            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
+        ]
+    },
+    {
+        id: "8",
+        userId: "sarah-456",
+        username: "LibertyRifle",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        content: "All these transvestites trying to turn our kids gay, I don’t want my kids to catch it with these woke ass teachers talking about “gender” in class, wtf?!",
+        timestamp: new Date("2025-02-13T12:15:00Z"),
+        reactions: [
+            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
+            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
+        ]
+    },
+    {
+        id: "9",
+        userId: "Marc-833",
+        username: "EagleEyeMark",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        content: "Liberals shouldn’t have rights, how dare they challenge our glorious leader with this BS, No Kings, idiots.",
+        timestamp: new Date("2025-02-13T12:15:00Z"),
+        reactions: [
+            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
+            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
+        ]
+    },
+    {
+        id: "10",
+        userId: "alex-321",
+        username: "SoverignShooter",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        content: "Radical left lunatics!",
+        timestamp: new Date("2025-02-13T12:15:00Z"),
+        reactions: [
+            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
+            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
+        ]
+    },
+    {
+        id: "11",
+        userId: "emma-654",
+        username: "RedWhiteBoom",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        content: "Trump should outlaw protests",
+        timestamp: new Date("2025-02-13T12:15:00Z"),
+        reactions: [
+            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
+            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
+        ]
+    },
+    {
+        id: "12",
+        userId: "sarah-456",
+        username: "LibertyRifle",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        content: "Trumps Reign can only happen if democracy is dismantled.",
+        timestamp: new Date("2025-02-13T12:15:00Z"),
+        reactions: [
+            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
+            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
+        ]
+    },
+    {
+        id: "13",
+        userId: "paul-123",
+        username: "PatriotHunter",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        content: "He’s the daddy of us all, all of us who are TRUE Americans.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
         reactions: [
             { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },

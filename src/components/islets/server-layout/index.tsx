@@ -15,7 +15,8 @@ export default async function ServerLayout({ children }: React.PropsWithChildren
 
     return (
         <>
-            <Sidebar className="bottom-0 flex flex-col">
+            {/* Desktop Sidebar - Hidden on mobile */}
+            <Sidebar className="bottom-0 hidden md:flex flex-col">
                 <Header verticalPadding="2" className="bg-midground border-b border-gray-800">
                     <div className="flex items-center gap-3">
                         <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">
