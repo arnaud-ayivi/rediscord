@@ -6,7 +6,6 @@ import Divider from "@/components/ui/divider";
 import { Input } from "@/components/ui/input";
 import {
   AiFillGift,
-  AiFillPlusCircle,
   AiOutlineFileText,
   AiOutlineGif,
 } from "react-icons/ai";
@@ -17,7 +16,6 @@ import React from "react";
 import InputField from "@/components/ui/input/input-field";
 import { useCurrentUserStore } from "@/state/user";
 import { ChatDM } from "@/components/islets/dm-chat";
-import { CompactUserHeader } from "@/components/islets/compact-user-header";
 import { User } from "@/lib/entities/user";
 import AudioVideoCall from "@/components/ui/audio-video-calls";
 import DMHeaderMenu from "@/components/islets/dm-header-menu";
@@ -213,6 +211,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                   user={user}
                   handleAudioVideoCall={handleAudioVideoCall}
                   showAudioVideoCall={showAudioVideoCall}
+                  className="h-16" // Made header bigger
               >
                 <div className="flex items-center gap-2 sm:gap-4">
                   {/* Mobile Back Button */}
@@ -239,7 +238,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                         status={user?.status}
                         className="flex-shrink-0"
                     />
-                    <span className="truncate">{user?.name}</span>
+                    <span className="truncate text-xl">{user?.name}</span> {/* Made font 100% bigger */}
                   </div>
                 </div>
               </PageHeader>
@@ -253,10 +252,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
               )}
 
               <PageContent className="h-full w-full flex-col pl-3 sm:pl-6 pr-1">
-                <div className="max-h-[calc(100vh-160px)] sm:max-h-[86vh] !overflow-y-auto pb-2 scroll-smooth">
-                  <div className="px-1 sm:px-0">
-                    <CompactUserHeader user={user} />
-                  </div>
+                <div className="flex-1 overflow-y-auto pb-2 scroll-smooth">
                   <div className="flex items-center px-1 sm:px-0">
                     <Divider className="h-[1px] w-full" />
                     <p className="flex whitespace-nowrap px-1 text-xs font-semibold text-gray-400">
@@ -265,7 +261,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                     <Divider className="h-[1px] w-full" />
                   </div>
 
-                  <div className="px-1 sm:px-0 min-h-[200px]">
+                  <div className="px-1 sm:px-0 min-h-[200px] pb-20">
                     <ChatDM
                         messages={messages}
                         user={user}
@@ -273,37 +269,34 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                     />
                   </div>
                 </div>
-                <InputField
-                    startIcon={
-                      <AiFillPlusCircle
-                          className="cursor-pointer hover:text-gray-200 touch-manipulation"
-                          size={20}
-                      />
-                    }
-                    endIcon={
-                      <div className="absolute right-3 sm:right-4 top-0 flex h-full cursor-pointer items-center space-x-2 text-gray-400">
-                        <AiFillGift className="hover:text-gray-300 touch-manipulation" size={18} />
-                        <AiOutlineGif className="hover:text-gray-300 touch-manipulation" size={18} />
-                        <AiOutlineFileText className="hover:text-gray-300 touch-manipulation" size={18} />
-                        <CgSmileMouthOpen className="hover:text-gray-300 touch-manipulation" size={18} />
-                      </div>
-                    }
-                    className="!absolute bottom-0 left-0 right-0 !z-[10] mx-3 sm:mx-6 mb-4 w-auto bg-foreground"
-                >
-                  <Input
-                      className="py-3 sm:py-2 pl-10 sm:pl-12 pr-24 sm:pr-36 !placeholder-gray-600 text-base sm:text-sm border border-gray-600 ring-1 ring-transparent focus:ring-gray-500"
-                      type="text"
-                      placeholder={`Message ${user.name}`}
-                      value={newMessage}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter") {
-                          handleSubmit();
-                        }
-                      }}
-                      onChange={handleInputChange}
-                  />
-                </InputField>
-                <div className=" absolute bottom-20 md:bottom-0 left-0 right-0 !z-[9]  h-8 bg-foreground" />
+
+                {/* Input Field - Now in normal document flow */}
+                <div className="border-t border-gray-800 bg-foreground p-3 sm:p-4">
+                  <InputField
+                      endIcon={
+                        <div className="absolute right-3 sm:right-4 top-0 flex h-full cursor-pointer items-center space-x-2 text-gray-400">
+                          <AiFillGift className="hover:text-gray-300 touch-manipulation" size={18} />
+                          <AiOutlineGif className="hover:text-gray-300 touch-manipulation" size={18} />
+                          <AiOutlineFileText className="hover:text-gray-300 touch-manipulation" size={18} />
+                          <CgSmileMouthOpen className="hover:text-gray-300 touch-manipulation" size={18} />
+                        </div>
+                      }
+                      className="w-full"
+                  >
+                    <Input
+                        className="py-3 sm:py-2 pl-3 sm:pl-4 pr-24 sm:pr-36 !placeholder-gray-600 text-base sm:text-sm border border-gray-700 bg-gray-800 focus:ring-gray-500"
+                        type="text"
+                        placeholder={`Message ${user.name}`}
+                        value={newMessage}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter") {
+                            handleSubmit();
+                          }
+                        }}
+                        onChange={handleInputChange}
+                    />
+                  </InputField>
+                </div>
               </PageContent>
             </>
         )}

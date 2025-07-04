@@ -1,3 +1,4 @@
+// src/components/layout/page/page-header.tsx
 "use client";
 import { BsChatRightFill, BsGithub, BsInboxFill } from "react-icons/bs";
 import { BiSolidPhoneCall } from "react-icons/bi";
@@ -26,18 +27,18 @@ import DMChannelPopover from "@/components/islets/dm-channel-list/dm-channel-pop
 type PageHeaderButtonProps = HybridButtonProps;
 
 const PageHeaderButton = React.forwardRef(
-  (
-    { children, className, ...props }: PageHeaderButtonProps,
-    ref: React.Ref<HybridButtonRef>,
-  ) => (
-    <HybridButton
-      ref={ref}
-      className={clsx("text-gray-300 hover:text-gray-200", className)}
-      {...props}
-    >
-      {children}
-    </HybridButton>
-  ),
+    (
+        { children, className, ...props }: PageHeaderButtonProps,
+        ref: React.Ref<HybridButtonRef>,
+    ) => (
+        <HybridButton
+            ref={ref}
+            className={clsx("text-gray-300 hover:text-gray-200", className)}
+            {...props}
+        >
+          {children}
+        </HybridButton>
+    ),
 );
 PageHeaderButton.displayName = "PageHeadeButton";
 
@@ -65,70 +66,75 @@ interface PageHeaderProps {
   user?: User;
   handleAudioVideoCall?: () => void;
   showAudioVideoCall?: boolean;
+  className?: string; // Added className prop
 }
 export default function PageHeader({
-  children,
-  user,
-  handleAudioVideoCall,
-  showAudioVideoCall,
-}: PageHeaderProps) {
-    const [open, setOpen] = React.useState(false);
+                                     children,
+                                     user,
+                                     handleAudioVideoCall,
+                                     showAudioVideoCall,
+                                     className, // Added className parameter
+                                   }: PageHeaderProps) {
+  const [open, setOpen] = React.useState(false);
 
 
   return (
-    <Header
-      className={`flex-none justify-between ${
-        showAudioVideoCall ? "bg-[#000000]" : ""
-      } transition-colors duration-200 ease-in-out `}
-    >
-      {children}
+      <Header
+          className={clsx(
+              `flex-none justify-between ${
+                  showAudioVideoCall ? "bg-[#000000]" : ""
+              } transition-colors duration-200 ease-in-out`,
+              className // Pass className to Header component
+          )}
+      >
+        {children}
 
-      <div className="flex items-center gap-6">
-        <TooltipProvider>
-          <Popover open={open} onOpenChange={setOpen}>
-            {headerIcons.map((icon, index) => {
-              if (index === 0 && !user) {
-                return null;
-              }
-              const messageIconIndex = index === 1;
-              return (
-                <Tooltip key={index}>
-                  <TooltipTrigger asChild>
-                    <PopoverTrigger asChild={messageIconIndex}>
-                      <PageHeaderButton
-                        onClick={index === 0 ? handleAudioVideoCall : undefined}
-                        className={`${
-                          messageIconIndex ? "hidden md:block" : null
-                        }`}
-                        href={icon.href}
-                        key={index}
+        <div className="flex items-center gap-6">
+          <TooltipProvider>
+            <Popover open={open} onOpenChange={setOpen}>
+              {headerIcons.map((icon, index) => {
+                if (index === 0 && !user) {
+                  return null;
+                }
+                const messageIconIndex = index === 1;
+                return (
+                    <Tooltip key={index}>
+                      <TooltipTrigger asChild>
+                        <PopoverTrigger asChild={messageIconIndex}>
+                          <PageHeaderButton
+                              onClick={index === 0 ? handleAudioVideoCall : undefined}
+                              className={`${
+                                  messageIconIndex ? "hidden md:block" : null
+                              }`}
+                              href={icon.href}
+                              key={index}
+                          >
+                            {icon.icon}
+                          </PageHeaderButton>
+                        </PopoverTrigger>
+                      </TooltipTrigger>
+                      {messageIconIndex && (
+                          <Divider
+                              className={`${
+                                  messageIconIndex ? "hidden md:block" : null
+                              }`}
+                              vertical
+                          />
+                      )}
+                      <TooltipContent
+                          side="bottom"
+                          className="z-[51] !text-sm"
+                          sideOffset={0}
                       >
-                        {icon.icon}
-                      </PageHeaderButton>
-                    </PopoverTrigger>
-                  </TooltipTrigger>
-                  {messageIconIndex && (
-                    <Divider
-                      className={`${
-                        messageIconIndex ? "hidden md:block" : null
-                      }`}
-                      vertical
-                    />
-                  )}
-                  <TooltipContent
-                    side="bottom"
-                    className="z-[51] !text-sm"
-                    sideOffset={0}
-                  >
-                    {icon.tooltip}
-                  </TooltipContent>
-                </Tooltip>
-              );
-            })}
-            <DMChannelPopover setOpen={setOpen} position="right-20" />
-          </Popover>
-        </TooltipProvider>
-      </div>
-    </Header>
+                        {icon.tooltip}
+                      </TooltipContent>
+                    </Tooltip>
+                );
+              })}
+              <DMChannelPopover setOpen={setOpen} position="right-20" />
+            </Popover>
+          </TooltipProvider>
+        </div>
+      </Header>
   );
 }
