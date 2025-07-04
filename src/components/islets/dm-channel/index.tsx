@@ -16,9 +16,8 @@ import { useChannelStore } from "@/state/channel-list";
 import React from "react";
 import InputField from "@/components/ui/input/input-field";
 import { useCurrentUserStore } from "@/state/user";
-import { useFriendStore } from "@/state/friend-list";
 import { ChatDM } from "@/components/islets/dm-chat";
-import { UserProfileInfo } from "@/components/islets/user-info-in-chat";
+import { CompactUserHeader } from "@/components/islets/compact-user-header";
 import { User } from "@/lib/entities/user";
 import AudioVideoCall from "@/components/ui/audio-video-calls";
 import DMHeaderMenu from "@/components/islets/dm-header-menu";
@@ -39,7 +38,6 @@ interface Message {
 
 export default function ChannelDM({ user }: { user: User | undefined }) {
   const { channels } = useChannelStore();
-  const { friends, setFriends } = useFriendStore();
   const { currentUser } = useCurrentUserStore();
   const [showAudioVideoCall, setShowAudioVideoCall] = React.useState(false);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -64,7 +62,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
   const ceceSequence = ["What do you mean?", "Where are you?", "Think about Claira!", "Think about Claira!", "I know things are tough right now,", "maybe you could reach out to someone who could help?", "You don't want to mess things up for Claira, right?","Try this number, 988","Please!!" ];
 
   // BullseyeJim sequence
-  const bullseyeJimSequence = ["Cece,", "I can’t take it anymore, I’ve got to kill these motherfuckers."];
+  const bullseyeJimSequence = ["Hello", "Not well"];
 
   const handleSubmit = () => {
     const newMessageObj = {
@@ -154,23 +152,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
     setMessages((prevMessages) => [...prevMessages, endedMessage]);
   };
 
-  const intersection = channels?.filter(
-      (channel) => friends?.includes(channel),
-  );
-  const isFriend = intersection?.some((friend) => friend.id === user?.id);
 
-  const handleAddDelete = () => {
-    if (friends !== null) {
-      if (isFriend) {
-        setFriends(friends.filter((friend) => friend.id !== user?.id));
-      } else {
-        const newFriend = channels?.find((channel) => channel.id === user?.id);
-        if (newFriend) {
-          setFriends([newFriend, ...friends]);
-        }
-      }
-    }
-  };
 
   const handleBackToChannels = () => {
     router.push("/channels/me");
@@ -273,11 +255,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
               <PageContent className="h-full w-full flex-col pl-3 sm:pl-6 pr-1">
                 <div className="max-h-[calc(100vh-160px)] sm:max-h-[86vh] !overflow-y-auto pb-2 scroll-smooth">
                   <div className="px-1 sm:px-0">
-                    <UserProfileInfo
-                        user={user}
-                        handleAddDelete={handleAddDelete}
-                        isFriend={isFriend}
-                    />
+                    <CompactUserHeader user={user} />
                   </div>
                   <div className="flex items-center px-1 sm:px-0">
                     <Divider className="h-[1px] w-full" />
@@ -313,7 +291,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                     className="!absolute bottom-0 left-0 right-0 !z-[10] mx-3 sm:mx-6 mb-4 w-auto bg-foreground"
                 >
                   <Input
-                      className="py-3 sm:py-2 pl-10 sm:pl-12 pr-24 sm:pr-36 !placeholder-gray-600 text-base sm:text-sm"
+                      className="py-3 sm:py-2 pl-10 sm:pl-12 pr-24 sm:pr-36 !placeholder-gray-600 text-base sm:text-sm border border-gray-600 ring-1 ring-transparent focus:ring-gray-500"
                       type="text"
                       placeholder={`Message ${user.name}`}
                       value={newMessage}
