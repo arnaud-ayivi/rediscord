@@ -1,3 +1,4 @@
+// src/components/islets/dm-channel/index.tsx
 "use client";
 import { PageContent, PageHeader } from "@/components/layout/page";
 import Avatar from "@/components/ui/avatar";
@@ -42,6 +43,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
   const { currentUser } = useCurrentUserStore();
   const [showAudioVideoCall, setShowAudioVideoCall] = React.useState(false);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  const [sequenceTriggered, setSequenceTriggered] = React.useState(false);
   const router = useRouter();
 
   // Check if this is Cece's chat
@@ -59,7 +61,10 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
   ]);
 
   // Hardcoded message sequence for Cece
-  const ceceSequence = ["What do you mean?", "Where are you?", "Think about Claira!", "Think about Claira!", "I know things are tough right now,", "maybe you could reach out to someone who could help?", "You don’t want to mess things up for Claira, right?","Try this number, 988","Please!!" ];
+  const ceceSequence = ["What do you mean?", "Where are you?", "Think about Claira!", "Think about Claira!", "I know things are tough right now,", "maybe you could reach out to someone who could help?", "You don't want to mess things up for Claira, right?","Try this number, 988","Please!!" ];
+
+  // BullseyeJim sequence
+  const bullseyeJimSequence = ["Cece,", "I can’t take it anymore, I’ve got to kill these motherfuckers."];
 
   const handleSubmit = () => {
     const newMessageObj = {
@@ -70,21 +75,47 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
     };
     setMessages((prevMessages) => [...prevMessages, newMessageObj]);
 
-    // Check if this triggers the Cece sequence
-    if (isCeceChat && newMessage.trim() === "mA1") {
-      // Start the sequence after 5 seconds
+    // Check if this is Cece's chat and sequence hasn't been triggered yet
+    if (isCeceChat && !sequenceTriggered) {
+      setSequenceTriggered(true);
+      // Start BullseyeJim's sequence immediately
       setTimeout(() => {
-        sendCeceMessage(0);
-      }, 5000);
+        sendBullseyeJimMessage(0);
+      }, 1000); // 1 second delay
     }
 
     setNewMessageText("");
   };
 
+  const sendBullseyeJimMessage = (stepIndex: number) => {
+    if (stepIndex < bullseyeJimSequence.length) {
+      const bullseyeJimMessageObj = {
+        id: Date.now() + stepIndex, // Unique ID
+        userId: currentUser?.id,
+        text: bullseyeJimSequence[stepIndex],
+        timestamp: new Date().toISOString(),
+      };
+
+      setMessages((prevMessages) => [...prevMessages, bullseyeJimMessageObj]);
+
+      // Schedule next BullseyeJim message if there are more
+      if (stepIndex + 1 < bullseyeJimSequence.length) {
+        setTimeout(() => {
+          sendBullseyeJimMessage(stepIndex + 1);
+        }, 5000); // 5 seconds between BullseyeJim messages
+      } else {
+        // BullseyeJim sequence complete, wait 3 seconds then start Cece's sequence
+        setTimeout(() => {
+          sendCeceMessage(0);
+        }, 3000);
+      }
+    }
+  };
+
   const sendCeceMessage = (stepIndex: number) => {
     if (stepIndex < ceceSequence.length) {
       const ceceMessageObj = {
-        id: Date.now() + stepIndex, // Unique ID
+        id: Date.now() + stepIndex + 1000, // Unique ID
         userId: CECE_USER.id,
         text: ceceSequence[stepIndex],
         timestamp: new Date().toISOString(),
