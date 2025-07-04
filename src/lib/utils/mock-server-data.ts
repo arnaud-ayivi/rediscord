@@ -150,10 +150,7 @@ export const MOCK_MESSAGES: Message[] = [
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "These damn migrants will eat our pets and even each other!",
         timestamp: new Date("2025-02-13T12:15:00Z"),
-        reactions: [
-            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
-            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
-        ]
+
     },
     {
         id: "7",
@@ -162,10 +159,7 @@ export const MOCK_MESSAGES: Message[] = [
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "We’ve got to put a stop to this take over.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
-        reactions: [
-            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
-            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
-        ]
+
     },
     {
         id: "8",
@@ -174,10 +168,7 @@ export const MOCK_MESSAGES: Message[] = [
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "All these transvestites trying to turn our kids gay, I don’t want my kids to catch it with these woke ass teachers talking about “gender” in class, wtf?!",
         timestamp: new Date("2025-02-13T12:15:00Z"),
-        reactions: [
-            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
-            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
-        ]
+
     },
     {
         id: "9",
@@ -186,10 +177,7 @@ export const MOCK_MESSAGES: Message[] = [
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "Liberals shouldn’t have rights, how dare they challenge our glorious leader with this BS, No Kings, idiots.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
-        reactions: [
-            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
-            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
-        ]
+
     },
     {
         id: "10",
@@ -198,10 +186,7 @@ export const MOCK_MESSAGES: Message[] = [
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "Radical left lunatics!",
         timestamp: new Date("2025-02-13T12:15:00Z"),
-        reactions: [
-            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
-            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
-        ]
+
     },
     {
         id: "11",
@@ -210,10 +195,7 @@ export const MOCK_MESSAGES: Message[] = [
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "Trump should outlaw protests",
         timestamp: new Date("2025-02-13T12:15:00Z"),
-        reactions: [
-            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
-            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
-        ]
+
     },
     {
         id: "12",
@@ -222,10 +204,7 @@ export const MOCK_MESSAGES: Message[] = [
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "Trumps Reign can only happen if democracy is dismantled.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
-        reactions: [
-            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
-            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
-        ]
+
     },
     {
         id: "13",
@@ -234,9 +213,6 @@ export const MOCK_MESSAGES: Message[] = [
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "He’s the daddy of us all, all of us who are TRUE Americans.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
-        reactions: [
-            { emoji: "🇫🇷", count: 12, users: ["user5", "user6"] },
-            { emoji: "❤️", count: 6, users: ["user7", "user8"] }
-        ]
+
     }
 ];

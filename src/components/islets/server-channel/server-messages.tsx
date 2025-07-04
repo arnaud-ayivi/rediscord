@@ -25,9 +25,6 @@ const MessageReaction = ({ emoji, count, onClick }: MessageReactionProps) => (
 
 export default function ServerMessages({ messages }: ServerMessagesProps) {
     const chatContainerRef = React.useRef<HTMLDivElement | null>(null);
-    const [showDetailMessage, setShowDetailMessage] = React.useState<{
-        [key: string]: boolean;
-    }>({});
 
     const scrollToBottom = () => {
         if (chatContainerRef.current) {
@@ -41,36 +38,6 @@ export default function ServerMessages({ messages }: ServerMessagesProps) {
     React.useEffect(() => {
         scrollToBottom();
     }, [messages]);
-
-    const formatMessageTime = (timestamp: Date) => {
-        const now = new Date();
-        const messageDate = new Date(timestamp);
-
-        // If today, show time only
-        if (messageDate.toDateString() === now.toDateString()) {
-            return messageDate.toLocaleTimeString([], {
-                hour: "numeric",
-                minute: "2-digit",
-            });
-        }
-
-        // If this year, show month/day and time
-        if (messageDate.getFullYear() === now.getFullYear()) {
-            return messageDate.toLocaleDateString([], {
-                month: "numeric",
-                day: "numeric",
-            }) + " at " + messageDate.toLocaleTimeString([], {
-                hour: "numeric",
-                minute: "2-digit",
-            });
-        }
-
-        // Otherwise show full date
-        return messageDate.toLocaleDateString() + " at " + messageDate.toLocaleTimeString([], {
-            hour: "numeric",
-            minute: "2-digit",
-        });
-    };
 
     const shouldShowAvatar = (index: number) => {
         if (index === 0) return true;
@@ -96,18 +63,6 @@ export default function ServerMessages({ messages }: ServerMessagesProps) {
                         className={`group relative flex items-start gap-3 px-4 py-1 hover:bg-gray-800/20 ${
                             showAvatar ? "mt-4" : "mt-0"
                         }`}
-                        onMouseEnter={() => {
-                            setShowDetailMessage((prev) => ({
-                                ...prev,
-                                [message.id]: true,
-                            }));
-                        }}
-                        onMouseLeave={() => {
-                            setShowDetailMessage((prev) => ({
-                                ...prev,
-                                [message.id]: false,
-                            }));
-                        }}
                     >
                         {/* Avatar */}
                         <div className="w-10 flex-none">
@@ -120,11 +75,7 @@ export default function ServerMessages({ messages }: ServerMessagesProps) {
                                 />
                             ) : (
                                 <div className="h-10 w-10 flex items-center justify-center">
-                                    {showDetailMessage[message.id] && (
-                                        <span className="text-xs text-gray-500">
-                      {formatMessageTime(message.timestamp)}
-                    </span>
-                                    )}
+                                    {/* Empty space where avatar would be */}
                                 </div>
                             )}
                         </div>
@@ -135,9 +86,6 @@ export default function ServerMessages({ messages }: ServerMessagesProps) {
                                 <div className="flex items-baseline gap-2 mb-1">
                   <span className="font-semibold text-white hover:underline cursor-pointer">
                     {message.username}
-                  </span>
-                                    <span className="text-xs text-gray-500">
-                    {formatMessageTime(message.timestamp)}
                   </span>
                                     {message.edited && (
                                         <span className="text-xs text-gray-500">(edited)</span>
