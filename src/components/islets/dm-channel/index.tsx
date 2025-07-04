@@ -57,13 +57,13 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
     {
       id: 1,
       userId: user?.id,
-      text: user?.id === CECE_USER.id ? "Hey there! I'm Cece 👋" : "Hello! How are you?",
+      text: user?.id === CECE_USER.id ? "Hey! This is Cece" : "Hello! How are you?",
       timestamp: new Date().toISOString(),
     },
   ]);
 
   // Hardcoded message sequence for Cece
-  const ceceSequence = ["mB2", "mB1", "mB3", "mB4", "mB5", "mB6", "mB7", "mB8"];
+  const ceceSequence = ["What do you mean?", "Where are you?", "Think about Claira!", "Think about Claira!", "I know things are tough right now,", "maybe you could reach out to someone who could help?", "You don’t want to mess things up for Claira, right?","Try this number, 988","Please!!" ];
 
   const handleSubmit = () => {
     const newMessageObj = {
@@ -75,7 +75,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
     setMessages((prevMessages) => [...prevMessages, newMessageObj]);
 
     // Check if this triggers the Cece sequence
-    if (isCeceChat && newMessage.trim() === "mA1") {
+    if (isCeceChat && newMessage.trim() !== "mA1") {
       // Start the sequence after 5 seconds
       setTimeout(() => {
         sendCeceMessage(0);
@@ -244,7 +244,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
               )}
 
               <PageContent className="h-full w-full flex-col pl-3 sm:pl-6 pr-1">
-                <div className="max-h-[calc(100vh-160px)] sm:max-h-[86vh] !overflow-y-auto pb-2">
+                <div className="max-h-[calc(100vh-160px)] sm:max-h-[86vh] !overflow-y-auto pb-2 scroll-smooth">
                   <div className="px-1 sm:px-0">
                     <UserProfileInfo
                         user={user}
@@ -260,7 +260,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                     <Divider className="h-[1px] w-full" />
                   </div>
 
-                  <div className="px-1 sm:px-0">
+                  <div className="px-1 sm:px-0 min-h-[200px]">
                     <ChatDM
                         messages={messages}
                         user={user}
