@@ -3,6 +3,8 @@
 
 Rediscord is a study of Discord UI built in NextJS and TailwindCSS using some [shadcn](https://ui.shadcn.com/) concepts and components showing how powerful are these libs and how they can replicate a specific design and complex UI.
 
+This fork is being used to mock Discord for the production of a performance theater piece where one of the protagonist is a member of a discord group.
+
 > **Warning**
 > Live preview (rediscord.com) was closed due to attacks causing millions of invocations and incurring charges in Vercel
 

@@ -47,13 +47,13 @@ export default function SideMenuTrack({ servers }: SideMenuTrackProps) {
 
                 <Divider className="w-8" />
 
-                {/* Server - Functional */}
+                {/* Server - Functional with larger image */}
                 <SideMenuItem
                     href="/servers/maga-forever/maga"
                     onClick={() => handleServerClick("maga-forever")}
                     tooltipContent={<div className="font-semibold">MAGA Community</div>}
                     notificationCount={3}
-                    className="mx-auto my-2"
+                    className="mx-auto my-2 overflow-hidden" // Added overflow-hidden
                     isActive={active === "maga-forever"}
                     image={{
                         url: "/img123.png",
@@ -71,7 +71,7 @@ export default function SideMenuTrack({ servers }: SideMenuTrackProps) {
                         key={server.id}
                         onClick={() => handleServerClick(server.id)}
                         className={clsx(
-                            "group relative block h-12 w-12 bg-foreground bg-cover transition-all hover:shadow-xl mx-auto my-2",
+                            "group relative block h-12 w-12 bg-foreground bg-cover transition-all hover:shadow-xl mx-auto my-2 overflow-hidden",
                             "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                             "focus-visible:ring-offset-background active:translate-y-[1px]",
                             active === server.id ? "rounded-[15px]" : "rounded-[100%] hover:rounded-[15px]",
@@ -94,12 +94,12 @@ export default function SideMenuTrack({ servers }: SideMenuTrackProps) {
                             </div>
                         )}
 
-                        {/* Server image */}
+                        {/* Server image with improved sizing */}
                         <img
                             src={server.photo}
                             alt={server.name}
                             className={clsx(
-                                "absolute inset-0 w-full h-full object-cover transition-all",
+                                "absolute inset-0 w-full h-full object-cover object-center transition-all scale-110", // Added scale-110 and object-center
                                 active === server.id ? "rounded-[15px]" : "rounded-[100%] hover:rounded-[15px]",
                             )}
                         />
