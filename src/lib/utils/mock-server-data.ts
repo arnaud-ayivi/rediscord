@@ -23,7 +23,7 @@ export const MOCK_SERVER_DATA: DetailedServer = {
                 },
                 {
                     id: "maga",
-                    name: "maga",
+                    name: "#MAGA",
                     type: ChannelType.Announcement,
                     unreadCount: 2
                 },

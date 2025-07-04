@@ -138,21 +138,7 @@ export default function ServerMessages({ messages }: ServerMessagesProps) {
                             )}
                         </div>
 
-                        {/* Message Actions (visible on hover) */}
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute right-4 top-2 bg-gray-800 rounded border border-gray-700 flex">
-                            <button className="p-1.5 hover:bg-gray-700 text-gray-400 hover:text-gray-200">
-                                ➕
-                            </button>
-                            <button className="p-1.5 hover:bg-gray-700 text-gray-400 hover:text-gray-200">
-                                😀
-                            </button>
-                            <button className="p-1.5 hover:bg-gray-700 text-gray-400 hover:text-gray-200">
-                                💬
-                            </button>
-                            <button className="p-1.5 hover:bg-gray-700 text-gray-400 hover:text-gray-200">
-                                ⋯
-                            </button>
-                        </div>
+                        {/* Message Actions removed - no more popup */}
                     </div>
                 );
             })}

@@ -47,11 +47,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
   // Check if this is Cece's chat
   const isCeceChat = user?.id === CECE_USER.id;
 
-  const currentDate = new Date();
-  const formattedDate = `${currentDate.getDate()} ${currentDate.toLocaleString(
-      "default",
-      { month: "long" },
-  )} ${currentDate.getFullYear()}`;
+  const formattedDate = "July 07th 2025";
   const [newMessage, setNewMessageText] = React.useState("");
   const [messages, setMessages] = React.useState<Message[]>([
     {
@@ -75,7 +71,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
     setMessages((prevMessages) => [...prevMessages, newMessageObj]);
 
     // Check if this triggers the Cece sequence
-    if (isCeceChat && newMessage.trim() !== "mA1") {
+    if (isCeceChat && newMessage.trim() === "mA1") {
       // Start the sequence after 5 seconds
       setTimeout(() => {
         sendCeceMessage(0);

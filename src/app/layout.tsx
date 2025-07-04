@@ -4,24 +4,24 @@ import CommonLayout from "@/components/layout/common-layout";
 import "./globals.css";
 
 const mainFont = Open_Sans({
-  subsets: ["latin"],
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Rediscord - Reimaginated Discord app",
-  description:
-    "A Rediscord is an open-source reimaginated discord in NextJS + TailwindCSS, built by igorpenaque.com",
+    title: "Rediscord - Reimaginated Discord app",
+    description:
+        "A Rediscord is an open-source reimaginated discord in NextJS + TailwindCSS, built by igorpenaque.com",
 };
 
 export default function RootLayout({
-  children,
-}: React.PropsWithChildren) {
-  return (
-    <html lang="en">
-      <body className={mainFont.className + " dark"}>
+                                       children,
+                                   }: React.PropsWithChildren) {
+    return (
+        <html lang="en">
+        <body className={mainFont.className + " light"}>
         <CommonLayout />
         {children}
-      </body>
-    </html>
-  );
+        </body>
+        </html>
+    );
 }
