@@ -2,8 +2,6 @@ import Avatar from "@/components/ui/avatar";
 import { User } from "@/lib/entities/user";
 import React from "react";
 import { MdCall } from "react-icons/md";
-import { useSearchParams } from "next/navigation";
-import { CECE_USER } from "@/lib/utils/mock";
 
 interface ChatDMProps {
   user: User | null;
@@ -19,11 +17,6 @@ interface ChatDMProps {
 
 export function ChatDM({ messages, user, currentUser }: ChatDMProps) {
   const chatContainerRef = React.useRef<HTMLDivElement | null>(null);
-  const searchParams = useSearchParams();
-
-  // Check if device=computer is in URL
-  const isComputerDevice = searchParams.get('device') === 'computer';
-  const isCeceChat = user?.id === CECE_USER.id;
 
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
@@ -45,10 +38,6 @@ export function ChatDM({ messages, user, currentUser }: ChatDMProps) {
   // Function to get display name for messages
   const getDisplayName = (messageUserId?: string) => {
     if (messageUserId === currentUser?.id) {
-      // If device=computer and this is Cece's chat, show BullseyeJim's messages as from Cece
-      if (isComputerDevice && isCeceChat) {
-        return CECE_USER.name;
-      }
       return currentUser?.name;
     }
     return user?.name;
@@ -57,10 +46,6 @@ export function ChatDM({ messages, user, currentUser }: ChatDMProps) {
   // Function to get display avatar for messages
   const getDisplayAvatar = (messageUserId?: string) => {
     if (messageUserId === currentUser?.id) {
-      // If device=computer and this is Cece's chat, show Cece's avatar for BullseyeJim's messages
-      if (isComputerDevice && isCeceChat) {
-        return CECE_USER.avatar;
-      }
       return currentUser?.avatar;
     }
     return user?.avatar;
@@ -84,12 +69,6 @@ export function ChatDM({ messages, user, currentUser }: ChatDMProps) {
                     <MdCall className="text-lg text-green-500" />
                     <p className="text-white"> {currentUser?.name}</p>
                     <p className=""> {message.text}</p>
-                    <div className=" text-xs text-gray-400">
-                      {new Date(message.timestamp).toLocaleTimeString([], {
-                        hour: "numeric",
-                        minute: "numeric",
-                      })}
-                    </div>
                   </div>
               ) : (
                   <>
@@ -107,10 +86,7 @@ export function ChatDM({ messages, user, currentUser }: ChatDMProps) {
                     />
                     {showDetailMessage[message.id] && (
                         <div className="absolute top-1.5 z-0 text-xs text-gray-400">
-                          {new Date(message.timestamp).toLocaleTimeString([], {
-                            hour: "numeric",
-                            minute: "numeric",
-                          })}
+                          {/* Timestamp removed */}
                         </div>
                     )}
                     <div className="flex w-full flex-col overflow-hidden">
@@ -119,9 +95,6 @@ export function ChatDM({ messages, user, currentUser }: ChatDMProps) {
                           <div className="flex items-center justify-start">
                             <div className="text-sm font-semibold">
                               {getDisplayName(message.userId)}
-                            </div>
-                            <div className=" ml-2 text-xs text-gray-400">
-                              {new Date(message.timestamp).toLocaleTimeString()}
                             </div>
                           </div>
                       )}

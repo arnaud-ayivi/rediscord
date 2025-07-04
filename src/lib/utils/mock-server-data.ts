@@ -22,8 +22,8 @@ export const MOCK_SERVER_DATA: DetailedServer = {
                     type: ChannelType.Text
                 },
                 {
-                    id: "announcements",
-                    name: "announcements",
+                    id: "maga",
+                    name: "maga",
                     type: ChannelType.Announcement,
                     unreadCount: 2
                 },
@@ -103,7 +103,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "1",
         userId: "paul-123",
         username: "PatriotHunter",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
         content: "We need to take back what is ours!",
         timestamp: new Date("2025-02-13T09:21:00Z"),
         reactions: [
@@ -115,7 +115,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "2",
         userId: "sarah-456",
         username: "LibertyRifle",
-        avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b4c0?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b4c0?w=32&h=32&fit=crop&crop=face",
         content: "Thank God DEI is DEAD!",
         timestamp: new Date("2025-02-13T09:45:00Z")
     },
@@ -123,7 +123,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "3",
         userId: "mike-789",
         username: "DennisforAmerica",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face",
         content: "You know Israel and Iran teamed up to create the cyborg, George Droid (not Floyd). He was sent to the US to cause trouble.",
         timestamp: new Date("2025-02-13T10:12:00Z")
     },
@@ -131,7 +131,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "4",
         userId: "tom-143",
         username: "GuardianGary",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
         content: "These schools letting men play in girls sports need to have their funding terminated NOW",
         timestamp: new Date("2025-02-13T10:15:00Z")
     },
@@ -139,7 +139,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "5",
         userId: "alex-321",
         username: "SoverignShooter",
-        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face",
         content: " I hate femanine men and gays",
         timestamp: new Date("2025-02-13T11:30:00Z")
     },
@@ -147,7 +147,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "6",
         userId: "emma-654",
         username: "RedWhiteBoom",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "These damn migrants will eat our pets and even each other!",
         timestamp: new Date("2025-02-13T12:15:00Z"),
 
@@ -156,7 +156,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "7",
         userId: "Eric-459",
         username: "BullseyeJim",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "We’ve got to put a stop to this take over.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
 
@@ -165,7 +165,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "8",
         userId: "sarah-456",
         username: "LibertyRifle",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "All these transvestites trying to turn our kids gay, I don’t want my kids to catch it with these woke ass teachers talking about “gender” in class, wtf?!",
         timestamp: new Date("2025-02-13T12:15:00Z"),
 
@@ -174,7 +174,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "9",
         userId: "Marc-833",
         username: "EagleEyeMark",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "Liberals shouldn’t have rights, how dare they challenge our glorious leader with this BS, No Kings, idiots.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
 
@@ -183,7 +183,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "10",
         userId: "alex-321",
         username: "SoverignShooter",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "Radical left lunatics!",
         timestamp: new Date("2025-02-13T12:15:00Z"),
 
@@ -192,7 +192,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "11",
         userId: "emma-654",
         username: "RedWhiteBoom",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "Trump should outlaw protests",
         timestamp: new Date("2025-02-13T12:15:00Z"),
 
@@ -201,7 +201,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "12",
         userId: "sarah-456",
         username: "LibertyRifle",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "Trumps Reign can only happen if democracy is dismantled.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
 
@@ -210,7 +210,7 @@ export const MOCK_MESSAGES: Message[] = [
         id: "13",
         userId: "paul-123",
         username: "PatriotHunter",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
+        // avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face",
         content: "He’s the daddy of us all, all of us who are TRUE Americans.",
         timestamp: new Date("2025-02-13T12:15:00Z"),
 

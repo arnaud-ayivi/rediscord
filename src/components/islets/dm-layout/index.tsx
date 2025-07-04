@@ -1,6 +1,5 @@
 import Sidebar from "@/components/layout/sidebar";
 import FindChatButton from "@/components/islets/find-chat-button";
-
 import Header from "@/components/layout/header";
 import DMHeaderMenu from "@/components/islets/dm-header-menu";
 import DMChannelList from "@/components/islets/dm-channel-list";
@@ -24,8 +23,8 @@ export default async function DMLayout({ children }: React.PropsWithChildren) {
   const { channels } = await getData();
   return (
       <>
-        {/* DM Sidebar - Hidden on mobile when viewing a specific DM */}
-        <Sidebar className="bottom-70 flex flex-col hidden md:flex">
+        {/* DM Sidebar - Only visible on desktop (md+) */}
+        <Sidebar className="bottom-0 flex flex-col hidden md:flex">
           <Header verticalPadding="2" className="bg-midground">
             <FindChatButton />
           </Header>

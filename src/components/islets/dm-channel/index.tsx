@@ -25,7 +25,7 @@ import DMChannelList from "@/components/islets/dm-channel-list";
 import VoiceStatusFooter from "@/components/islets/voice-status-footer";
 import FindChatButton from "@/components/islets/find-chat-button";
 import Header from "@/components/layout/header";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { CECE_USER } from "@/lib/utils/mock";
 
 interface Message {
@@ -43,10 +43,8 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
   const [showAudioVideoCall, setShowAudioVideoCall] = React.useState(false);
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // Check if device=computer is in URL
-  const isComputerDevice = searchParams.get('device') === 'computer';
+  // Check if this is Cece's chat
   const isCeceChat = user?.id === CECE_USER.id;
 
   const currentDate = new Date();
@@ -64,6 +62,9 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
     },
   ]);
 
+  // Hardcoded message sequence for Cece
+  const ceceSequence = ["mB2", "mB1", "mB3", "mB4", "mB5", "mB6", "mB7", "mB8"];
+
   const handleSubmit = () => {
     const newMessageObj = {
       id: messages.length + 1,
@@ -72,19 +73,35 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
       timestamp: new Date().toISOString(),
     };
     setMessages((prevMessages) => [...prevMessages, newMessageObj]);
-    setNewMessageText("");
 
-    // If device=computer and this is Cece's chat, send a response from Cece after a short delay
-    if (isComputerDevice && isCeceChat) {
+    // Check if this triggers the Cece sequence
+    if (isCeceChat && newMessage.trim() === "mA1") {
+      // Start the sequence after 5 seconds
       setTimeout(() => {
-        const ceceResponse = {
-          id: messages.length + 2,
-          userId: CECE_USER.id,
-          text: "Thanks for the message! I'm responding from the computer.",
-          timestamp: new Date().toISOString(),
-        };
-        setMessages((prevMessages) => [...prevMessages, ceceResponse]);
-      }, 1500);
+        sendCeceMessage(0);
+      }, 5000);
+    }
+
+    setNewMessageText("");
+  };
+
+  const sendCeceMessage = (stepIndex: number) => {
+    if (stepIndex < ceceSequence.length) {
+      const ceceMessageObj = {
+        id: Date.now() + stepIndex, // Unique ID
+        userId: CECE_USER.id,
+        text: ceceSequence[stepIndex],
+        timestamp: new Date().toISOString(),
+      };
+
+      setMessages((prevMessages) => [...prevMessages, ceceMessageObj]);
+
+      // Schedule next message if there are more in sequence
+      if (stepIndex + 1 < ceceSequence.length) {
+        setTimeout(() => {
+          sendCeceMessage(stepIndex + 1);
+        }, 5000);
+      }
     }
   };
 
@@ -149,8 +166,8 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                         onClick={() => setShowMobileMenu(false)}
                     />
 
-                    {/* Slide-out Menu */}
-                    <div className="absolute left-0 top-0 bottom-0 w-80 bg-midground border-r border-gray-800 flex flex-col">
+                    {/* Slide-out Menu - Optimized for iPhone */}
+                    <div className="absolute left-0 top-0 bottom-0 w-[85vw] max-w-[320px] bg-midground border-r border-gray-800 flex flex-col">
                       {/* Header */}
                       <Header verticalPadding="2" className="bg-midground flex items-center justify-between">
                         <FindChatButton />
@@ -170,9 +187,16 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                         </div>
                       </div>
 
-                      {/* Footer */}
+                      {/* User Footer */}
                       <VoiceStatusFooter />
                     </div>
+                  </div>
+              )}
+
+              {/* Mobile-only User Footer - Only show when in channel list view (channels/me), not in individual DM */}
+              {!showMobileMenu && (
+                  <div className="md:hidden fixed bottom-0 left-[70px] right-0 z-50 bg-semibackground border-t border-gray-800 shadow-lg">
+                    {/* This will be handled by the main channels/me page, not individual DM pages */}
                   </div>
               )}
 
@@ -181,31 +205,32 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                   handleAudioVideoCall={handleAudioVideoCall}
                   showAudioVideoCall={showAudioVideoCall}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-4">
                   {/* Mobile Back Button */}
                   <button
                       onClick={handleBackToChannels}
-                      className="md:hidden text-gray-400 hover:text-gray-200 p-1"
+                      className="md:hidden text-gray-400 hover:text-gray-200 p-1 touch-manipulation"
                   >
-                    <BsArrowLeft fontSize={20} />
+                    <BsArrowLeft fontSize={18} />
                   </button>
 
                   {/* Mobile Menu Button */}
                   <button
                       onClick={() => setShowMobileMenu(true)}
-                      className="md:hidden text-gray-400 hover:text-gray-200 p-1"
+                      className="md:hidden text-gray-400 hover:text-gray-200 p-1 touch-manipulation"
                   >
-                    <BsList fontSize={24} />
+                    <BsList fontSize={20} />
                   </button>
 
-                  <div className="flex flex-none items-center gap-3 text-sm font-semibold">
+                  <div className="flex flex-none items-center gap-2 sm:gap-3 text-sm font-semibold min-w-0">
                     <Avatar
                         size="sm"
                         src={user?.avatar}
                         alt="avatar"
                         status={user?.status}
+                        className="flex-shrink-0"
                     />
-                    {user?.name}
+                    <span className="truncate">{user?.name}</span>
                   </div>
                 </div>
               </PageHeader>
@@ -218,51 +243,52 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                   />
               )}
 
-              <PageContent className="h-full w-full flex-col pl-6 pr-1 ">
-                <div className="max-h-[86vh] !overflow-y-auto ">
-                  <UserProfileInfo
-                      user={user}
-                      handleAddDelete={handleAddDelete}
-                      isFriend={isFriend}
-                  />
-                  <div className="flex items-center">
+              <PageContent className="h-full w-full flex-col pl-3 sm:pl-6 pr-1">
+                <div className="max-h-[calc(100vh-160px)] sm:max-h-[86vh] !overflow-y-auto pb-2">
+                  <div className="px-1 sm:px-0">
+                    <UserProfileInfo
+                        user={user}
+                        handleAddDelete={handleAddDelete}
+                        isFriend={isFriend}
+                    />
+                  </div>
+                  <div className="flex items-center px-1 sm:px-0">
                     <Divider className="h-[1px] w-full" />
-                    <p className="flex  whitespace-nowrap px-1 text-xs font-semibold text-gray-400">
+                    <p className="flex whitespace-nowrap px-1 text-xs font-semibold text-gray-400">
                       {formattedDate}
                     </p>
                     <Divider className="h-[1px] w-full" />
                   </div>
 
-                  <ChatDM
-                      messages={messages}
-                      user={user}
-                      currentUser={currentUser}
-                  />
+                  <div className="px-1 sm:px-0">
+                    <ChatDM
+                        messages={messages}
+                        user={user}
+                        currentUser={currentUser}
+                    />
+                  </div>
                 </div>
                 <InputField
                     startIcon={
                       <AiFillPlusCircle
-                          className="cursor-pointer hover:text-gray-200"
-                          size={22}
+                          className="cursor-pointer hover:text-gray-200 touch-manipulation"
+                          size={20}
                       />
                     }
                     endIcon={
-                      <div className="absolute right-4 top-0  flex h-full cursor-pointer items-center space-x-2.5 text-gray-400 ">
-                        <AiFillGift className="hover:text-gray-300" size={22} />
-                        <AiOutlineGif className="hover:text-gray-300" size={22} />
-                        <AiOutlineFileText
-                            className="hover:text-gray-300"
-                            size={22}
-                        />
-                        <CgSmileMouthOpen className="hover:text-gray-300" size={22} />
+                      <div className="absolute right-3 sm:right-4 top-0 flex h-full cursor-pointer items-center space-x-2 text-gray-400">
+                        <AiFillGift className="hover:text-gray-300 touch-manipulation" size={18} />
+                        <AiOutlineGif className="hover:text-gray-300 touch-manipulation" size={18} />
+                        <AiOutlineFileText className="hover:text-gray-300 touch-manipulation" size={18} />
+                        <CgSmileMouthOpen className="hover:text-gray-300 touch-manipulation" size={18} />
                       </div>
                     }
-                    className="!absolute bottom-0 left-0 right-0 !z-[10] mx-6 mb-4 w-auto bg-foreground"
+                    className="!absolute bottom-0 left-0 right-0 !z-[10] mx-3 sm:mx-6 mb-4 w-auto bg-foreground"
                 >
                   <Input
-                      className=" py-2 pl-12 pr-36 !placeholder-gray-600"
+                      className="py-3 sm:py-2 pl-10 sm:pl-12 pr-24 sm:pr-36 !placeholder-gray-600 text-base sm:text-sm"
                       type="text"
-                      placeholder={`write something to @${user.name}`}
+                      placeholder={`Message ${user.name}`}
                       value={newMessage}
                       onKeyDown={(event) => {
                         if (event.key === "Enter") {
@@ -272,7 +298,7 @@ export default function ChannelDM({ user }: { user: User | undefined }) {
                       onChange={handleInputChange}
                   />
                 </InputField>
-                <div className=" absolute bottom-0 left-0 right-0 !z-[9]  h-8 bg-foreground" />
+                <div className=" absolute bottom-20 md:bottom-0 left-0 right-0 !z-[9]  h-8 bg-foreground" />
               </PageContent>
             </>
         )}

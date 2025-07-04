@@ -49,7 +49,7 @@ export default function SideMenuTrack({ servers }: SideMenuTrackProps) {
 
                 {/* Server - Functional */}
                 <SideMenuItem
-                    href="/servers/maga-forever/announcements"
+                    href="/servers/maga-forever/maga"
                     onClick={() => handleServerClick("maga-forever")}
                     tooltipContent={<div className="font-semibold">MAGA Community</div>}
                     notificationCount={3}

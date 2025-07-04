@@ -44,7 +44,7 @@ export default function ServerChannel({ server, channel, messages }: ServerChann
             id: Date.now().toString(),
             userId: "current-user",
             username: "You",
-            avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face",
+            // avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face",
             content: newMessage,
             timestamp: new Date()
         };
@@ -59,7 +59,7 @@ export default function ServerChannel({ server, channel, messages }: ServerChann
 
     const getChannelDescription = () => {
         switch (channel.id) {
-            case "announcements":
+            case "maga":
                 return "Important updates and news from the Strapi team";
             case "introductions":
                 return "Welcome! Introduce yourself to the community";
